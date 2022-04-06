@@ -1,6 +1,4 @@
-package SAE_Terraria_m;
-
-public class Robot {
+public class Robot implements Comparable<Robot>{
 	private Monde monde;
 	private int x;
 	private int y;
@@ -9,176 +7,178 @@ public class Robot {
 	private int max;
 	private int capacite_minage;
 	private int numero;
+  
 	
-	
-	public Robot(Monde mond,int i, int j, boolean b, int s, int m, int cm, int n) {
-		monde=mond;
-		x=i;
-		y=j;
-		nickel=b;
-		stockage=s;
-		max=m;
-		capacite_minage=cm;
-		numero=n;
+	public Robot(Monde mond, int i, int j, boolean b, int m, int cm, int n) {
+		this.monde = mond;
+		this.x = i;
+		this.y = j;
+		this.nickel = b;
+		this.stockage = 0;
+		this.max = m;
+		this.capacite_minage = cm;
+		this.numero = n;
 	}
-	
+  
 	
 	public Monde get_monde() {
-		return monde;
+		return this.monde;
 	}
-	
+  
 	public int get_x() {
-		return x;
+		return this.x;
 	}
-	
-
+  
 	public int get_y() {
-		return y;
+		return this.y;
 	}
-	
+  
 	public boolean get_nickel() {
-		return nickel;
+		return this.nickel;
 	}
-	
-
+  
 	public int get_stockage() {
-		return stockage;
+		return this.stockage;
 	}
-	
+  
 	public int get_max() {
-		return max;
+		return this.max;
 	}
-	
+  
 	public int get_cm() {
-		return capacite_minage;
+		return this.capacite_minage;
 	}
-	
+  
 	public int get_numero() {
-		return numero;
+		return this.numero;
 	}
-	
+  
+	@Override
+	public int compareTo(Robot r) {
+		return (numero - r.numero);
+  }
+  
 	public boolean nord() {
-		if(x-1>=0) {
-			Object s = monde.get_element(x-1, y, 0);
-			if(s instanceof Eau) {
+		if (this.x - 1 >= 0) {
+			Object s = this.monde.get_element(this.x - 1, this.y, 0);
+			if (s instanceof Eau) {
 				Eau sol = Eau.class.cast(s);
-				if(sol.get_eau()==false){
-					Object[][][] m = monde.get_matrice();
-					m[x-1][y][1]= this;
-					m[x][y][1]= null;
-					x-=1;
+				if (!sol.get_eau()) {
+					Object[][][] m = this.monde.get_matrice();
+					m[this.x - 1][this.y][1] = this;
+					m[this.x][this.y][1] = null;
+					this.x-=1;
 					return true;
 				}else {
 					return false;
-				}
-			}else {
+				} 
+			} else {
 				return false;
 			}
-		}else {
+		}	else {
 			return false;
 		}
 	}
-		
-	
+  
 	public boolean sud() {
-		if(x+1<=9) {
-			Object s = monde.get_element(x+1, y, 0);
-			if(s instanceof Eau) {
+		if (this.x + 1 <= 9) {
+			Object s = this.monde.get_element(this.x + 1, this.y, 0);
+			if (s instanceof Eau) {
 				Eau sol = Eau.class.cast(s);
-				if(sol.get_eau()==false){
-					Object[][][] m = monde.get_matrice();
-					m[x+1][y][1]= this;
-					m[x][y][1]= null;
-					x+=1;
+				if (!sol.get_eau()) {
+					Object[][][] m = this.monde.get_matrice();
+					m[this.x + 1][this.y][1] = this;
+					m[this.x][this.y][1] = null;
+					this.x+=1;
 					return true;
 				}else {
 					return false;
-				}
-			}else {
+				} 
+			} else {
 				return false;
 			}
-		}else {
+		} else {
 			return false;
 		}
 	}
-	
-	public boolean ouest() {
-		if(y-1>=0) {
-			Object s = monde.get_element(x, y-1, 0);
-			if(s instanceof Eau) {
-				Eau sol = Eau.class.cast(s);
-				if(sol.get_eau()==false){
-					Object[][][] m = monde.get_matrice();
-					m[x][y-1][1]= this;
-					m[x][y][1]= null;
-					y-=1;
-					return true;
+  
+  	public boolean ouest() {
+  		if (this.y - 1 >= 0) {
+  			Object s = this.monde.get_element(this.x, this.y - 1, 0);
+  			if (s instanceof Eau) {
+  				Eau sol = Eau.class.cast(s);
+  				if (!sol.get_eau()) {
+  					Object[][][] m = this.monde.get_matrice();
+  					m[this.x][this.y - 1][1] = this;
+  					m[this.x][this.y][1] = null;
+  					this.y-=1;
+  					return true;
 				}else {
 					return false;
-				}
-			}else {
+				} 
+			} else {
 				return false;
 			}
-		}else {
+		}	else {
 			return false;
 		}
 	}
-	
-	public boolean est() {
-		if(y+1<=9) {
-			Object s = monde.get_element(x, y+1, 0);
-			if(s instanceof Eau) {
-				Eau sol = Eau.class.cast(s);
-				if(sol.get_eau()==false){
-					Object[][][] m = monde.get_matrice();
-					m[x][y+1][1]= this;
-					m[x][y][1]= null;
-					y+=1;
-					return true;
+  
+  	public boolean est() {
+  		if (this.y + 1 <= 9) {
+  			Object s = this.monde.get_element(this.x, this.y + 1, 0);
+  			if (s instanceof Eau) {
+  				Eau sol = Eau.class.cast(s);
+  				if (!sol.get_eau()) {
+  					Object[][][] m = this.monde.get_matrice();
+  					m[this.x][this.y + 1][1] = this;
+  					m[this.x][this.y][1] = null;
+  					this.y+=1;
+  					return true;
 				}else {
 					return false;
-				}
-			}else {
+				} 
+			} else {
 				return false;
 			}
-		}else {
+		}	else {
 			return false;
 		}
 	}
-	
-	public boolean mine() {
-		Object m = monde.get_element(x, y, 0);
-		if (m instanceof Mine) {
-			Mine mine = Mine.class.cast(m);
-			if (mine.get_nickel()==nickel) {
-				if (max-stockage>=capacite_minage) {
-					mine.miner(capacite_minage);
-					stockage+=capacite_minage;
-					return true;
+  
+  	public boolean mine() {
+  		Object m = this.monde.get_element(this.x, this.y, 0);
+  		if (m instanceof Mine) {
+  			Mine mine = Mine.class.cast(m);
+  			if (mine.get_nickel() == this.nickel) {
+  				if (this.max - this.stockage >= this.capacite_minage) {
+  					mine.miner(this.capacite_minage);
+  					this.stockage += this.capacite_minage;
+  					return true;
 				}else {
 					return false;
-				}
-			}else {
+				} 
+			} else {
 				return false;
 			}
-		}else {
+		}	else {
 			return false;
 		}
 	}
-	
-	public boolean vider() {
-		Object e =monde.get_element(x, y+1, 0);
-		if(e instanceof Entrepot) {
-			Entrepot entr = Entrepot.class.cast(e);
-			if(entr.get_nickel()==nickel) {
-				entr.ajouter(stockage);
-				stockage=0;
-				return true;
-			}else {
-				return false;
-			}
-		}else {
-			return false;
-		}
-	}
+  
+  	public boolean vider() {
+  		Object e = this.monde.get_element(this.x, this.y + 1, 0);
+  		if (e instanceof Entrepot) {
+  			Entrepot entr = Entrepot.class.cast(e);
+  			if (entr.get_nickel() == this.nickel) {
+  				entr.ajouter(this.stockage);
+  				this.stockage = 0;
+  				return true;
+  			} else {
+  	  			return false;
+  			}
+  		} else {
+  	  		return false;
+  		}
+  	}
 }

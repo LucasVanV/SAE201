@@ -1,34 +1,31 @@
-package SAE_Terraria_m;
-
-
 public class Eau {
 	private Monde monde;
 	private int x;
 	private int y;
 	private boolean eau;
+  
 	
-	
-	public Eau(Monde m,int i, int j, boolean b) {
-		monde=m;
-		x=i;
-		y=j;
-		eau= b;
+	public Eau(Monde m, int i, int j, boolean b) {
+		this.monde = m;
+		this.x = i;
+		this.y = j;
+		this.eau = b;
 	}
+  
 	
-	public Monde get_monde(){
-		return monde;
+	public Monde get_monde() {
+		return this.monde;
 	}
-	
+  
 	public int get_x() {
-		return x;
+		return this.x;
 	}
-
+  
 	public int get_y() {
-		return y;
+		return this.y;
 	}
-	
+  
 	public boolean get_eau() {
-		return eau;
+		return this.eau;
 	}
-	
 }
