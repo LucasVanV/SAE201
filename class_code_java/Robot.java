@@ -1,7 +1,4 @@
-public class Robot implements Comparable<Robot>{
-	private Monde monde;
-	private int x;
-	private int y;
+public class Robot extends Element implements Comparable<Robot>{
 	private boolean nickel;
 	private int stockage;
 	private int max;
@@ -10,9 +7,7 @@ public class Robot implements Comparable<Robot>{
   
 	
 	public Robot(Monde mond, int i, int j, boolean b, int m, int cm, int n) {
-		this.monde = mond;
-		this.x = i;
-		this.y = j;
+		super(i,j,mond);
 		this.nickel = b;
 		this.stockage = 0;
 		this.max = m;
@@ -20,18 +15,6 @@ public class Robot implements Comparable<Robot>{
 		this.numero = n;
 	}
   
-	
-	public Monde get_monde() {
-		return this.monde;
-	}
-  
-	public int get_x() {
-		return this.x;
-	}
-  
-	public int get_y() {
-		return this.y;
-	}
   
 	public boolean get_nickel() {
 		return this.nickel;

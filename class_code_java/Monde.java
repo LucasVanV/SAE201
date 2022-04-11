@@ -1,15 +1,15 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-
+import java.util.Scanner;
 
 public class Monde {
 	private int id_monde;
-	private Object[][][] matrice;
+	private Element[][][] matrice;
   
 	public Monde(int i) {
 		this.id_monde = i;
-		this.matrice = new Object[10][10][2];
+		this.matrice = new Element[10][10][2];
 	}
   
 	
@@ -17,11 +17,11 @@ public class Monde {
 		return this.id_monde;
 	}
   
-	public Object[][][] get_matrice() {
+	public Element[][][] get_matrice() {
 		return this.matrice;
 	}
   
-	public Object get_element(int i, int j, int k) {
+	public Element get_element(int i, int j, int k) {
 		return this.matrice[i][j][k];
 	}
   
@@ -97,7 +97,7 @@ public class Monde {
 		System.out.print("  |");
 		System.out.println();
 		System.out.println("_______________________________________________________________|");
-		System.out.print("\n");
+		System.out.println("                                                               |");
 		int i;
 		for (i = 0; i < this.matrice.length; i++) {
 			for (int k = 0; k < (this.matrice[0][0]).length; k++) {
@@ -181,5 +181,25 @@ public class Monde {
 			System.out.print("  " + robot.get_stockage() + " / " + robot.get_max());
 			System.out.println();
 		} 
+	}
+	
+	public void jouer() {
+		if(this.get_element(0,0,0)==null) {
+			this.creer_monde();
+		}
+		Scanner scan= new Scanner(System.in);
+		System.out.println("quel action voulez vous faire ? (jouer / quitter)");
+		String action= scan.next();
+		if (action=="jouer") {
+				while (action!="quitter") {
+					System.out.println("sur quel robot voulez vous faire une interaction ? (numero du robot / quitter)");
+					String action= scan.next();
+					if( action =="quiter") {
+					}else {
+						int i= Integer.parseInt(action);  
+						/* chercher le robot qui coorespond a la demande, demander l'action  peut etre mettre cette methode ds Application*/
+					}
+				}
+		}
 	}
 }

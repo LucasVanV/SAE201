@@ -1,33 +1,18 @@
-public class Mine implements Comparable<Mine>{
-	private Monde monde;
-	private int x;
-	private int y;
+public class Mine extends Element implements Comparable<Mine>{
 	private boolean nickel;
 	private int quantite;
 	private int max;
 	private int numero;
   
+	
 	public Mine(Monde m, int i, int j, boolean b, int q, int n) {
-		monde = m;
-		this.x = i;
-		this.y = j;
+		super(i,j,m);
 		this.nickel = b;
 		this.quantite = q;
 		this.max = q;
 		this.numero = n;
 	}
-  
-	public Monde get_monde() {
-		return monde;
-	}
-  
-	public int get_x() {
-		return x;
-	}
-  
-	public int get_y() {
-		return y;
-	}
+
   
 	public boolean get_nickel() {
 		return nickel;

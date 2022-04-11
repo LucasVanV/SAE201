@@ -1,34 +1,17 @@
-public class Entrepot implements Comparable<Entrepot>{
-	private Monde monde;
+public class Entrepot extends Element implements Comparable<Entrepot>{
 	private boolean nickel;
 	private int stockage;
 	private int numero;
-	private int x;
-	private int y;
-  
+	
 	
 	public Entrepot(Monde m, int i, int j, boolean b, int n) {
-		this.monde = m;
+		super(i,j,m);
 		this.nickel = b;
 		this.stockage = 0;
 		this.numero = n;
-		this.x = i;
-		this.y = j;
 	}
-  
+
 	
-	public Monde get_monde() {
-		return this.monde;
-	}
-  
-	public int get_x() {
-		return this.x;
-	}
-  
-	public int get_y() {
-		return this.y;
-	}
-  
 	public boolean get_nickel() {
 		return this.nickel;
 	}
@@ -50,5 +33,3 @@ public class Entrepot implements Comparable<Entrepot>{
 		return (this.numero - e.numero);
 	}
 }
-
-
